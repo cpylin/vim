@@ -9,7 +9,7 @@
 ###安装步骤:
 1.通过以下命令下载相关配置文件
 ```bash
-git clone git@github.com:cpylin/vim.git ~/.vim
+git clone https://github.com/cpylin/vim.git ~/.vim
 ```
 2.版本选择
 -   2.1使用普通版
