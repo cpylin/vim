@@ -1,0 +1,7 @@
+VIM常用操作
+
+:%s/\r$//g 
+"删除DOS方式的回车^M
+:$s/{Ctrl+V}{Ctrl+M}//{Enter}
+
+
