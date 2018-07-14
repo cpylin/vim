@@ -1,4 +1,4 @@
-*message.txt*   For Vim version 7.3.  最近更新: 2010年7月
+*message.txt*   For Vim version 8.0.  最近更新: 2017年8月
 
 
 		  VIM 参考手册    by Bram Moolenaar
@@ -19,14 +19,23 @@
 :messages" 命令可以查看以前给出的消息。根据 'shortmess' 选项的设置，消息可能被
 覆盖或者截断。这时该命令尤其有用。
 
+	:messages		显示所有消息。
+
+	:{count}messages	显示 {count} 个最近的消息。
+
+	:messages clear		清除所有消息。
+
+	:{count}messages clear	清除消息，只保留 {count} 个最近的消息。
+
 使用微小 (tiny) 特性集的版本，记住的消息数目固定是 20。其它版本是 200。
 
 								*g<*
 这个命令用于察看前一个命令输出的最后一页。如果你在提示按回车的时候不小心按了空
 格 <Space> 键，那么该命令尤其有用。此时你将回到输入回车的提示画面，并可重新回
 滚。
-注意：如果在提示显示更多信息时使用 "q" 停止输出，那么只显示已输出的那部分显
+注意: 如果在提示显示更多信息时使用 "q" 停止输出，那么只显示已输出的那部分显
 示。当另一个命令输出结果时，会清空前一个命令的输出。
+不重定向 "g<" 的输出。
 
 如果使用翻译的消息，显示的第一行会告诉你谁维护这个消息翻译。如果你发现问题，可
 以联系该维护者。
@@ -55,6 +64,7 @@
   :echo errmsg
 或者查看最近的消息列表: >
   :messages
+见上 `:messages`。
 
 
 消 息 列 表
@@ -111,8 +121,8 @@
   Command too recursive
 
 当 Ex 命令执行了一个 Ex 命令，后者又执行一个 Ex 命令，如此反复的时候，就可能发
-生。最多能有 200 层。这很有可能是无穷循环。可能涉及的命令是 |:execute| 或
-|:source|。
+生。最多能有 200 层或 'maxfuncdepth' 的值的较大者。如果超过，很有可能是无穷循
+环。可能涉及的命令是 |:execute| 或 |:source|。
 
 							*E254*  >
   Cannot allocate color {name}
@@ -266,7 +276,7 @@ Vim 的脚本被执行的情况。
 现一个交换文件时会出现这种情况。
 - 如果交换文件是由以前某个崩溃的编辑对话留下的，也许你希望删除这个交换文件。编
   辑 {filename} 来找出关于该交换文件的信息。
-- 如果你希望强行保存，那么在命令前加 ":silent!"。例如： >
+- 如果你希望强行保存，那么在命令前加 ":silent!"。例如: >
 	:silent! w! /tmp/test
 < 之所以需要这个特殊命令，是因为你已经用 ! 来覆盖已经存在的文件了。
 
@@ -280,7 +290,7 @@ Vim 的脚本被执行的情况。
   File not written: Writing is disabled by 'write' option
 
 'write' 选项被关闭。这使得所有试图写入文件的命令都会产生这个消息。这可能由
-|-m| 命令行参数引起。你可以用 ":setwrite" 打开 'write' 选项。
+|-m| 命令行参数引起。你可以用 ":set write" 打开 'write' 选项。
 
 							*E25*  >
   GUI cannot be used: Not enabled at compile time
@@ -424,13 +434,12 @@ Vim 没有完全准备好内存溢出的情况。首先确保所有的改变被�
   助。
 - 'undoreload' 设为零以关闭之。
 
-另见 |msdos-limitations|。
-
 							*E339*  >
   Pattern too long
 
-这只有可能发生在 16 位整数的系统上: 编译的正规表达式模式超过了 65000 个字节。
-试试短一些的模式。
+这发生在 16 位整数的系统上: 编译的正规表达式模式超过了 65000 个字节。试试短一
+些的模式。
+这也可能发生在某个规则的偏移量超出了可用的空间。试试对模式进行简化。
 
 							*E45*  >
   'readonly' option is set (add ! to override)
@@ -583,6 +592,12 @@ http://groups.yahoo.com/group/solarisonintel/message/12179。
 你一定用了太多的缓冲区了。可能两个缓冲区使用相同的号码，这会引起问题。你可能要
 退出 Vim 并重启。
 
+							*E931*  >
+  Buffer cannot be registered
+
+内存溢出，或者重复的缓冲区号。可能在 W14 之后出现。查找缓冲区不总是有效，最好
+重启 Vim。
+
 							*E296* *E297*  >
   Seek error in swap file write
   Write error in swap file
@@ -641,7 +656,10 @@ Vim 不能建立临时文件。
   Can't open file {filename}
   Can't read file {filename}
 
-Vim 不能读临时文件。
+Vim 不能读临时文件。特别是在 Windows 上，这可能由错误转义 cmd.exe 的中特殊字符
+引起。 7.3.443 补丁对转义的方法有所改变。对 |system()| 的所有外壳参数应有
+|shellescape()| 进行转义，或直接用 ^ 转义。另见 'shellxquote' 和
+'shellxescape'。
 
 							*E464*  >
   Ambiguous use of user-defined command
@@ -658,6 +676,13 @@ Vim 不能读临时文件。
 
 你试图执行一个既不是 Ex 命令也不是用户定义的命令。
 
+							*E943*  >
+  Command table needs to be updated, run 'make cmdidxs'
+
+只可能在修改了源代码，在 src/ex_cmds.h 中增加了新命令时发生。此时需要更新查找
+表，运行: >
+	make cmdidxs
+
 ==============================================================================
 3. 消息							*messages*
 
@@ -670,7 +695,7 @@ Vim 不能读临时文件。
 
 如果屏幕上有东西要你阅读，而屏幕即将刷新的时候，就会给出该消息:
 - 执行完外部命令以后 (例如，":!ls" 和 "=")。
-- 状态行显示的内容超过了窗口的宽度或者跨越到 'showcwd' 或者 'ruler' 的输出位
+- 状态行显示的内容超过了窗口的宽度或者跨越到 'showcmd' 或者 'ruler' 的输出位
   置。
 
 -> 按 <Enter> 或者 <Space> 可以重画屏幕并继续，除此以外就像该键没按过一样。
@@ -705,7 +730,7 @@ Vim 不能读临时文件。
   -- More -- SPACE/d/j: screen/page/line down, b/u/k: up, q: quit
 
 如果屏幕被消息全部占据，本消息就可能出现。只有在 'more' 选项打开的时候它才会出
-现。它的显示使用 |hk-MoreMsg| 高亮组。
+现。它的显示使用 |hl-MoreMsg| 高亮组。
 
 输入					效果 ~
      <CR> 或 <NL> 或 j 或 <Down>	下一行

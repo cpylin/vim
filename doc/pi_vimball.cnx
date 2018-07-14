@@ -1,4 +1,4 @@
-*pi_vimball.txt*	For Vim version 7.3.  最近更新: 2010年7月
+*pi_vimball.txt*	For Vim version 8.0.  最近更新: 2017年8月
 
 			      --------------------
 			      Vimball 归档处理程序
@@ -6,13 +6,18 @@
 				译者: Willis
 				http://vimcdoc.sf.net
 
-Author:  Charles E. Campbell, Jr.  <NdrOchip@ScampbellPfamily.AbizM>
+Author:  Charles E. Campbell  <NdrOchip@ScampbellPfamily.AbizM>
 	  (remove NOSPAM from Campbell's email first)
-Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*Vimball-copyright*
-	   The VIM LICENSE applies to Vimball.vim, and Vimball.txt
-	   (see |copyright|) except use "Vimball" instead of "Vim".
-	   No warranty, express or implied.
-	   Use At-Your-Own-Risk!
+Copyright: (c) 2004-2015 by Charles E. Campbell		*Vimball-copyright*
+	The VIM LICENSE (see |copyright|) applies to the files in this
+	package, including vimballPlugin.vim, vimball.vim, and pi_vimball.txt.
+	except use "vimball" instead of "VIM".  Like anything else that's free,
+	vimball.vim and its associated files are provided *as is* and comes with
+	no warranty of any kind, either expressed or implied.  No guarantees
+	of merchantability.  No guarantees of suitability for any purpose.  By
+	using this plugin, you agree that in no event will the copyright
+	holder be liable for any damages resulting from the use of this
+	software. Use at your own risk!
 
 ==============================================================================
 1. 内容					*vba* *vimball* *vimball-contents*
@@ -65,7 +70,7 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*Vimball-copyright*
 		:[range]MkVimball filename
 <
 	建立文件 "filename.vba"，Vimball.vim 随后可以用它来还原那些文件。如果
-	文件 "filename.vba" 已经存在，MKVimball 会给出警告而不建立文件。注意 
+	文件 "filename.vba" 已经存在，MKVimball 会给出警告而不建立文件。注意
 	这些路径都相对于你的 .vim (vimfiles) 目录，而所有文件都应该在该目录
 	下。更准确地说，vimball 插件通常使用 'runtimepath' 里第一个存在的目录
 	作为前缀；它不使用绝对路径，除非用户指定的就是如此。
@@ -85,10 +90,10 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*Vimball-copyright*
 	首先尝试 |mkdir()| 命令 (并非所有系统都支持)。
 
 	如果该命令不存在，而且 g:vimball_mkdir 也不存在，它被设为: >
-	  |g:netrw_local_mkdir|，如果存在的话
-	  "mkdir"              ，如果可执行的话
-	  "makedir"            ，如果可执行的话
-	  否则                 ，未定义
+	  |g:netrw_localmkdir|，如果存在的话
+	  "mkdir"             ，如果可执行的话
+	  "makedir"           ，如果可执行的话
+	  否则                ，未定义
 <	用户可以自定义 g:vimball_mkdir 来直接指定建立目录的命令。vimball 如有
 	需要，会通过该命令来建立目录。
 
@@ -102,8 +107,8 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*Vimball-copyright*
 	简单编辑一个 vimball 文件，Vimball.vim 会告诉用户必须执行 (source) 该
 	归档的内容才能提取其中的文件。
 
-	只有首行是 "Vimball Archiver by Charles E. Campbell, Jr., Ph.D." 的文
-	件才会被认为是 vimball 文件，从而才会继续提取操作。
+	只有首行是 "Vimball Archiver by Charles E. Campbell" 的文件才会被认为
+	是 vimball 文件，从而才会继续提取操作。
 
 列 出 VIMBALL 中 的 文 件				*:VimballList*
 
@@ -156,6 +161,28 @@ WINDDOWS						*vimball-windows*
 ==============================================================================
 4. Vimball 历史 (英文)					*vimball-history* {{{1
 
+	37 : Jul 18, 2014 * (by request of T. Miedema) added augroup around
+			    the autocmds in vimballPlugin.vim
+	     Jul 06, 2015 * there are two uses of tabc; changed to tabc!
+	34 : Sep 22, 2011 * "UseVimball path" now supports a non-full path by
+			    prepending the current directory to it.
+	33 : Apr 02, 2011 * Gave priority to *.vmb over *.vba
+			  * Changed silent! to sil! (shorter)
+			  * Safed |'swf'| setting (during vimball extraction,
+			    its now turned off)
+	32 : May 19, 2010 * (Christian Brabrandt) :so someplugin.vba and
+			    :so someplugin.vba.gz (and the other supported
+			    compression types) now works
+			  * (Jan Steffens) added support for xz compression
+			  * fenc extraction was erroneously picking up the
+			    end of the line number when no file encoding
+			    was present.  Fixed.
+			  * By request, beginning the switchover from the vba
+			    extension to vmb.  Currently both are supported;
+			    MkVimball, however, now will create *.vmb files.
+	     Feb 11, 2011 * motoyakurotsu reported an error with vimball's
+			    handling of zero-length files
+	     Feb 18, 2016 * Changed =~ to =~# where appropriate
 	30 : Dec 08, 2008 * fnameescape() inserted to protect error
 			    messaging using corrupted filenames from
 			    causing problems
@@ -179,6 +206,8 @@ WINDDOWS						*vimball-windows*
 			    causing problems as reported by Zhang Shuhan
 	24 : Nov 15, 2007 * g:vimball_path_escape used by s:Path() to
 	                    prevent certain characters from causing trouble
+			    (defunct: |fnameescape()| and |shellescape()|
+			    now used instead)
 	22 : Mar 21, 2007 * uses setlocal instead of set during BufEnter
 	21 : Nov 27, 2006 * (tnx to Bill McCarthy) vimball had a header
 	                    handling problem and it now changes \s to /s

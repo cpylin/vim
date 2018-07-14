@@ -1,7 +1,7 @@
-*usr_42.txt*	For Vim version 7.3.  最近更新：2008年5月
+*usr_42.txt*	For Vim version 8.0.  最近更新: 2017年8月
 
-		     VIM USER MANUAL - by Bram Moolenaar
-		     译者：lang2 http://vimcdoc.sf.net
+		     VIM 用户手册 - by Bram Moolenaar
+		     译者: lang2 http://vimcdoc.sf.net
 
 			      添加新菜单
 
@@ -36,8 +36,8 @@ Vim 使用的菜单是定义在 "$VIMRUNTIME/menu.vim" 文件里的。如果你�
    你可以再加一层: "Edit.Settings.Shiftwidth" 在 "Edit" 菜单下定义一个
 "Settings" 子菜单，然后在其下定义一个菜单项 "Shiftwidth"。你还可以再加更深的
 层。但别用太多，那样要找到一个菜单层就需要太多的鼠标动作。
-   ":menu" 命令和 :map 命令很象: 左边指定了该菜单项如何被触发，右边定义它将执
-行的字符串。{keys} 只是一串字符，Vim 会象你键入它们一样使用该字符串。因此在插
+   ":menu" 命令和 :map 命令很像: 左边指定了该菜单项如何被触发，右边定义它将执
+行的字符串。{keys} 只是一串字符，Vim 会像你键入它们一样使用该字符串。因此在插
 入模式下，当 {keys} 不包括特殊字符时，Vim 会插入那些字符。
 
 
@@ -121,7 +121,7 @@ Help 菜单被指定了一个很大的值，这样它就会被放置在最右边
 ==============================================================================
 *42.2*	菜单命令
 
-你可以为某一特定的运行模式定义专用的菜单。就好象各种 ":map" 命令的变体一样:
+你可以为某一特定的运行模式定义专用的菜单。就好像各种 ":map" 命令的变体一样:
 
 	:menu		普通、可视和操作符等待模式
 	:nmenu		普通模式
@@ -273,12 +273,12 @@ Vim 中有两个特殊的菜单: ToolBar (工具栏) 和 PopUp (弹出菜单)。
    你可以为工具栏项添加另外的位图，或者定义新的工具栏项。例如: >
 
 	:tmenu ToolBar.Compile  Compile the current file
-	:amenu ToolBar.Compile  :!cc % -o %:r<CR>
+	:amenu ToolBar.Compile  :!cc % -o %:r:S<CR>
 
 现在你需要创建图标。对于 MS-Windows 图标必须是名为 "Compile.bmp" 的位图格式文
 件。对于 Unix 系统必须是名为 "Compile.xpm" 的 XPM 格式文件。大小必须是 18 X 18
 个像素。对于 MS-Windows 来说也可以使用其它大小的图标，但可能看起来会比较难看。
-   把位图放到 'runtimepath' 其中一个目录下的 "bitmaps" 子目录内。例如：对于 
+   把位图放到 'runtimepath' 其中一个目录下的 "bitmaps" 子目录内。例如: 对于
 Unix 系统可以使用 "~/.vim/bitmaps/Compile.xpm" 目录。
 
 你也可以为工具栏项定义一个工具提示。工具提示是解释工具栏项功能的简短文字。例如

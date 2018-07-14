@@ -1,8 +1,8 @@
-*sign.txt*      For Vim version 7.3.  最近更新: 2010年5月
+*sign.txt*      For Vim version 8.0.  最近更新: 2017年8月
 
 
-		  VIM 参考手册	作者: Gordon Prieur
-				      Bram Moolenaar
+		  VIM 参考手册    by Gordon Prieur
+				  and Bram Moolenaar
 				译者: Willis
 				http://vimcdoc.sf.net
 
@@ -38,8 +38,9 @@
    行号上多次放置。
 
 如果文件里定义了标号，Vim 自动增加两个字符的纵列来显示标号。撤销最后一个标号之
-后，该列又会自动消失。该列的颜色由 SignColumn 高亮组定义 |hl-SignColumn|。一个
-设定该颜色的示例: >
+后，该列又会自动消失。'signcolumn' 选项可改变此行为。
+
+该列的颜色由 SignColumn 高亮组定义 |hl-SignColumn|。一个设定该颜色的示例: >
 
 	:highlight SignColumn guibg=darkgrey
 
@@ -60,12 +61,13 @@
 
 :sign define {name} {argument}...
 		定义新标号或为已存在的标号设置属性。{name} 可以是完全由数位组
-		成的数值，也可以是由非数位开头的名字。
+		成的数值，也可以是由非数位开头的名字。忽略开头的数位 (译者注:
+		零？)，所以 "0012"、"012" 和 "12" 认为是相同的名字。
 		可以定义大约 120 个不同的标号。
 
 		允许的参数是:
 
-	icon={pixmap}
+	icon={bitmap}
 		位图文件名。必须是完整的路径名。位图应该能够在两个字符的宽度内
 		显示。但是不会实际检查这一点，如果位图太大，刷新时会有问题。只
 		有 GTK 2 可以按比例缩放位图，使之刚好能占据可用的空间。
@@ -73,6 +75,8 @@
 			GTK 1		pixmap (.xpm)
 			GTK 2		许多
 			Motif		pixmap (.xpm)
+			Win32		.bmp, .ico, .cur
+					pixmap (.xpm) |+xpm_w32|
 
 	linehl={group}
 		用以显示整个标号行的高亮组。多用于定义背景色。
@@ -115,6 +119,7 @@
 :sign place {id} line={lnum} name={name} buffer={nr}
 		同上，但指定缓冲区 {nr}。
 
+							*E885*
 :sign place {id} name={name} file={fname}
 		把文件 {fname} 里用 {id} 记住的标号换成 {name} 指定的新标号。
 		参看关于 {fname} 的说明 |:sign-fname|。可用于不移动某个标号的
@@ -130,8 +135,14 @@
 		从文件 {fname} 里撤销已放置的标号 {id} 的放置。
 		参看关于 {fname} 的说明 |:sign-fname|。
 
+:sign unplace * file={fname}
+		从文件 {fname} 里撤销所有已放置的标号。
+
 :sign unplace {id} buffer={nr}
-		同上，但指定缓冲区 {nr}。
+		从缓冲区 {nr} 里撤销已放置的标号 {id} 的放置。
+
+:sign unplace * buffer={nr}
+		从缓冲区 {nr} 里撤销所有已放置的标号。
 
 :sign unplace {id}
 		撤销所有文件里出现的 {id} 标号的放置。
@@ -143,7 +154,7 @@
 		撤销光标所在标号的放置。
 
 
-列 出 放 置 标 号
+列 出 放 置 标 号					*:sign-place-list*
 
 :sign place file={fname}
 		列出文件 {fname} 里所有放置的标号。
@@ -164,7 +175,8 @@
 		如果此文件不在窗口显示但当前文件又不能被放弃 |abandon|，此动作
 		失败。
 
-:sign jump {id} buffer={nr}
-		同上，但指定缓冲区 {nr}。
+:sign jump {id} buffer={nr}					*E934*
+		同上，但指定缓冲区 {nr}。如果缓冲区 {nr} 没有名字，报错。
+
 
  vim:tw=78:ts=8:ft=help:norl:

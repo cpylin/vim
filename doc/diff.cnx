@@ -1,15 +1,15 @@
-*diff.txt*      For Vim version 7.3.  最后修改: 2010年8月
+*diff.txt*      For Vim version 8.0.  最近更新: 2017年7月
 
 
-		  VIM REFERENCE MANUAL    by Bram Moolenaar
+		  VIM 参考手册    by Bram Moolenaar
 		   译者: Zimin<cranecai@users.sf.net>, tocer
 		   http://vimcdoc.sf.net
 
 
 				*diff* *vimdiff* *gvimdiff* *diff-mode*
-这篇文章描述 |+diff| 特性: 比较同一文件的两、三或四个版本间的差异。
+这篇文章描述 |+diff| 特性: 比较同一文件的两到八个版本间的差异。
 
-用户手册 |08.7| 节说明了一些 diff 基本的用法。
+用户手册 |08.7| 节说明了一些比较基本的用法。
 
 1. 进入比较模式			|vimdiff|
 2. 查看比较结果			|view-diffs|
@@ -27,7 +27,7 @@
 
 	vimdiff file1 file2 [file3 [file4]]
 
-这等同于:  >
+这等同于: >
 
 	vim -d file1 file2 [file3 [file4]]
 
@@ -41,7 +41,7 @@
 窗口比较局部于当前标签页 |tab-page| 中。你不能看到某窗口和别的标签页中的窗口的
 差异。这样，可以同时打开多组比较窗口，每组差异在单独的标签页中。
 
-Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样，使用垂直分割。如果你
+Vim 将为每个文件打开一个窗口，并且就像使用 |-O| 参数一样，使用垂直分割。如果你
 要水平分割，加上 |-o| 参数: >
 
 	vimdiff -o file1 file2 [file3 [file4]]
@@ -76,14 +76,14 @@ Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样�
 如果已在 Vim 中，你可以用三种方式进入比较模式。
 
 							*E98*
-:diffsplit {filename}					*:diffs* *:diffsplit*
+:diffs[plit] {filename}					*:diffs* *:diffsplit*
 		对 {filename} 开一个新窗口。当前的和新开的窗口将设定和
 		"vimdiff" 一样的参数。另见 'diffexpr'。
 
 							*:difft* *:diffthis*
-:diffthis	使当前窗口参与比较。本命令设定和 "vimdiff" 同样的选项。
+:difft[his]	使当前窗口参与比较。本命令设定和 "vimdiff" 同样的选项。
 
-:diffpatch {patchfile}				 *E816* *:diffp* *:diffpatch*
+:diffp[atch] {patchfile}			 *E816* *:diffp* *:diffpatch*
 		使用当前的缓冲区，用 {patchfile} 给它打上补丁并打开一个缓冲区
 		显示结果。两个缓冲区都将设定为和 "vimdiff" 同样的参数。
 		{patchfile} 可以是任何一种 "patch" 程序认识的或 'patchexpr' 可
@@ -102,18 +102,23 @@ Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样�
 如果你偏好垂直分割，可以在 'diffopt' 中包含 "vertical"。
 
 							*E96*
-最多可以对 4 个缓冲区设置 'diff' 模式。
+最多可以对八个缓冲区设置 'diff' 模式。
 
 因为选项的值是由缓冲区记录的，在编辑另一个文件后又回到此文件时，你仍会处于比较
 模式。
 
 							*:diffo* *:diffoff*
-:diffoff	为当前窗口关闭比较模式。
+:diffo[ff]	为当前窗口关闭比较模式。即使 'diff' 没有置位，也复位相关选项。
 
-:diffoff!	为当前窗口和当前标签页所有置位 'diff' 的窗口关闭比较模式。
+:diffo[ff]!	为当前窗口和当前标签页所有置位 'diff' 的窗口关闭比较模式。只在
+		在置位 'diff' 的窗口中才复位相关选项，如果当前窗口没有置位
+		'diff'，不改变其任何选项。
+		隐藏缓冲区也从参于比较的缓冲区列表中删除。
 
-":diffoff" 命令复位相关选项为其默认值。这和比较模式开始前的旧值未必相同，旧值
-不会保存。
+`:diffoff` 命令复位相关选项到启用 `:diffsplit`，`:diffpatch`，`:diffthis` 之
+前或以比较模式启动 Vim 时的值。
+使用 `:diffoff` 两次恢复再上次的保存值。
+否则复位其默认值如下:
 
 	'diff'		关闭
 	'scrollbind'	关闭
@@ -138,15 +143,16 @@ Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样�
 - 'diffopt' 中没有 "filler"，插入或删除的行会使对齐出错
 
 所有打开 'diff' 选项并在某一个窗口编辑的缓冲区都将参与比较。即使对于一个隐藏的
-缓冲区也是如此，如果它曾在一个窗口内被编辑过的话。
+缓冲区也是如此，如果它曾在一个窗口内被编辑过的话。要去除隐藏缓冲区，用
+`:diffoff!`。
 
 					*:DiffOrig* *diff-original-file*
 因为 'diff' 是一个局部于窗口的选项，所以同一缓冲区可以在某一个窗口里是比较模
 式，而在另一个窗口里则是普通模式。你也可能想查看对一缓冲区在读入文件后所做过的
 改动。既然 Vim 不允许同一个文件有 2 个缓冲区，你需要另一个缓冲区。可用下面的命
 令: >
-	 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-	 	\ | wincmd p | diffthis
+	 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+	 	\ | diffthis | wincmd p | diffthis
 (|vimrc_example.vim| 里有该示例)。之后，使用 ":DiffOrig" 就可以查看当前缓冲区
 和它刚从文件里载入时的不同之处。
 
@@ -154,14 +160,16 @@ Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样�
 ":hide" 来关闭但不卸载窗口。如果你不想缓冲区继续参与比较，可以在隐藏前先执行
 ":set nodiff"。
 
-							*:diffu* *:diffupdate*
-:diffu[pdate]			刷新比较结果的高亮和折叠。
+							*:dif* *:diffupdate*
+:dif[fupdate][!]		刷新比较结果的高亮和折叠。
 
 在改变文本时，Vim 试图更新比较的结果。插入或删除行一般会得到正确的更新。但行内
 或者更复杂的改动将无法如此。要强制刷新比较结果，使用: >
 
 	:diffupdate
 
+包含 ! 时，Vim 会检查文件是否被外部改变而需要重新载入。对每个被改变的文件给出
+提示，就像用了 `:checktime` 那样。
 
 一些行在本窗口没有，但却在一个窗口里出现。它们或者是在那个文件里新插入的，或者
 是在本文件里刚删除的。对这些行，除非 'diffopt' 选项中不包含 "filler"，Vim 将在
@@ -185,7 +193,7 @@ Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样�
 				个不同的字符 (从行末开始搜起) 之间的文字，包括
 				其实没被改动的部分，都被高亮。这里只受到
 				'diffopt' 中的 "iwhite" 的影响。
-|hl-DiffDelete| DiffDelete 	被删除的行。也称为填充行，因为在本缓冲区里这些
+|hl-DiffDelete|	DiffDelete 	被删除的行。也称为填充行，因为在本缓冲区里这些
 				行并不真正存在。
 
 ==============================================================================
@@ -223,11 +231,13 @@ Vim 将为每个文件打开一个窗口，并且就象使用 |-O| 参数一样�
 		[range] 可以参考下面。
 
 							*do*
-do		同 ":diffget"，但没有参数和范围。"o" 表示 "obtain" (不能用
-		"dg"，因为那可能是 "dgg" 的开始！)。
+[count]do	同 ":diffget"，但没有范围。"o" 表示 "obtain" (不能用
+		"dg"，因为那可能是 "dgg" 的开始！)。注意 不适用于可视模式。
+		给出的 [count] 用作 ":diffget" 的 [bufspec] 参数。
 
 							*dp*
-dp		同 ":diffput"，但没有参数和范围。
+dp		同 ":diffput"，但没有范围。注意 不适用于可视模式。
+		给出的 [count] 用作 ":diffput" 的 [bufspec] 参数。
 
 当没有给定 [range] 时，受影响的仅是当前光标所处位置或其紧上方的差异文本。
 当指定 [range] 时，Vim 试图仅改动它指定的行。不过，当有被删除的行时，这不总有
@@ -257,6 +267,17 @@ dp		同 ":diffput"，但没有参数和范围。
 
 也可参考 |'diffopt'| 和 |'fillchars'| 中的 "diff" 项。
 
+					    *diff-slow* *diff_translations*
+比较语法高亮对很长的行可能会较慢，尤其是因为它试图匹配各种本地化的文本。要关闭
+本地化并提高语法高亮速度，设置全局变量 g:diff_translations 为零: >
+
+    let g:diff_translations = 0
+<
+设置此变量后，重新载入语法脚本: >
+
+    set syntax=diff
+<
+
 
 查 找 不 同						*diff-diffexpr*
 
@@ -282,7 +303,7 @@ diff。下面就是一个 Vim 所期望格式的范例: >
 
 "1a2" 项添加了 "bbb" 行。
 "4d4" 项删除了 "111" 行。
-'7c7" 项用 "ggg" 行替代了 "GGG" 行。
+"7c7" 项用 "ggg" 行替代了 "GGG" 行。
 
 当 'diffexpr' 不为空时，Vim 执行它以得到一个满足上述格式的 diff 文件。在执行过
 程中，以下的变量会被设置为须用到的文件名:
@@ -324,8 +345,9 @@ Vim 将测试 diff 的输出看上去是否完全正确。如果不正确，你�
 如果问题出在哪里不是很清楚，可以设置 'verbose' 选项为一或更高的值，以获得更多
 的信息。
 
-自安装的 Vim 包含了 diff 程序。如果没有，您可以自行下载 diff.exe。例如从这里
-http://jlb.twu.net/code/unixkit.php。
+MS-Windows 自安装的 Vim 包含了 diff 程序。如果没有，您可以自行下载 diff.exe。
+例如从这里
+http://gnuwin32.sourceforge.net/packages/diffutils.htm。
 
 
 使 用 补 丁					*diff-patchexpr*
