@@ -81,7 +81,7 @@ set wb
 set backup
 set backupskip=/tmp/*
 set backupcopy=yes
-set backupdir=~/tmp/vimbak
+set backupdir=~/tmp/vimbak "设置自动备份的目录,如果指定目录不存在需要先创建
 set directory=.
 set swapfile
 set swapsync=fsync

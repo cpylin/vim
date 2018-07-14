@@ -54,9 +54,9 @@ set autowrite
 set more
 set wb
 set backup
-set backupskip=/tmp/*
+set backupskip=
 set backupcopy=yes
-set backupdir=~/tmp/vimbak
+set backupdir=/tmp
 set directory=.
 set swapfile
 set swapsync=fsync
