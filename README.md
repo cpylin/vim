@@ -32,7 +32,7 @@ git clone https://github.com/cpylin/vim.git ~/.vim
 ```bash
    ln -vs ~/.vim/vimrc_svr ~/.vimrc
 ```
-3.**打开vim, 在vim里执行命令**
+3.**打开vim, 忽略错误警告, 在vim里执行命令**
 ```
 :PlugInstall
 ```
