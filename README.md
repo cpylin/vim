@@ -9,11 +9,11 @@
 
 安装步骤:
 --------
-1.通过以下命令下载相关配置文件
+1.**通过以下命令下载相关配置文件**
 ```bash
 git clone https://github.com/cpylin/vim.git ~/.vim
 ```
-2.版本选择
+2.**版本选择**
 -   2.1使用普通版
 ```
    ln -vs ~/.vim/vimrc ~/.vimrc
@@ -22,7 +22,7 @@ git clone https://github.com/cpylin/vim.git ~/.vim
 ```
    ln -vs ~/.vim/vimrc_svr ~/.vimrc
 ```
-3.打开vim, 在vim里执行命令
+3.**打开vim, 在vim里执行命令**
 ```
 :PlugInstall
 ```
