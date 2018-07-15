@@ -26,8 +26,8 @@ set t_Co=256
 "colorscheme dracula
 "colorscheme terminal
 "colorscheme molokai
-"colorscheme onedark 
-colorscheme one
+colorscheme onedark 
+"colorscheme one
 ""set mouse=n
 set shortmess=atI
 set encoding=utf-8
