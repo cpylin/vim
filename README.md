@@ -7,7 +7,8 @@
 
 `注意,配置文件仅在MacOS环境下测试，其他平台可能不适用`
 
-###安装步骤:
+安装步骤:
+--------
 1.通过以下命令下载相关配置文件
 ```bash
 git clone https://github.com/cpylin/vim.git ~/.vim
