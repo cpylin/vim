@@ -18,11 +18,18 @@ git clone https://github.com/cpylin/vim.git ~/.vim
 ```
 2.**版本选择**
 -   2.1使用普通版
+
+     自行安装以下字体
 ```
+   https://github.com/powerline/fonts/tree/master/DejaVuSansMono
+   https://github.com/Znuff/consolas-powerline 　　　　　　<可选>
+```
+   然后运行
+```bash
    ln -vs ~/.vim/vimrc ~/.vimrc
 ```
 -   2.2使用服务器版
-```
+```bash
    ln -vs ~/.vim/vimrc_svr ~/.vimrc
 ```
 3.**打开vim, 在vim里执行命令**
