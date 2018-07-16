@@ -11,6 +11,7 @@ Plug 'junegunn/vim-easy-align'
 "Plug 'Valloric/YouCompleteMe'  "改用deoplete
 Plug 'scrooloose/nerdtree'
 Plug 'dracula/vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
@@ -50,9 +51,17 @@ set background=dark
 set t_Co=256
 "colorscheme dracula
 "colorscheme terminal
+"colorscheme solarized
 "colorscheme molokai
-colorscheme onedark 
+"colorscheme onedark 
 "colorscheme one
+if has("gui_running")
+  colorscheme solarized
+else
+  colorscheme onedark
+endif
+
+
 ""set mouse=n
 set shortmess=atI
 set encoding=utf-8
@@ -182,6 +191,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeWinSize = 25
 let NERDTreeShowHidden = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+let NERDTreeStatusline='%l/%L :%v' 
 nmap wm :NERDTreeToggle<CR>
 "autocmd vimenter * NERDTree
 

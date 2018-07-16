@@ -7,6 +7,7 @@ Plug 'rstacruz/sparkup', {'runtimepath': 'vim/'}
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
 Plug 'joshdick/onedark.vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'rakr/vim-one'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/Vimball'
@@ -25,6 +26,7 @@ set background=dark
 set t_Co=256
 "colorscheme dracula
 "colorscheme terminal
+"colorscheme solarized
 "colorscheme molokai
 colorscheme onedark 
 "colorscheme one
