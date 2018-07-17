@@ -148,7 +148,6 @@ endif
 
 "Terminal
 
-
 "set UltiSnips
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
