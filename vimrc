@@ -58,7 +58,7 @@ set t_Co=256
 if has("gui_running")
   colorscheme solarized
 else
-  colorscheme onedark
+  colorscheme terminal
 endif
 
 

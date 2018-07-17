@@ -9,6 +9,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'joshdick/onedark.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rakr/vim-one'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/Vimball'
 Plug 'jlanzarotta/bufexplorer'
@@ -25,10 +27,10 @@ filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和
 set background=dark
 set t_Co=256
 "colorscheme dracula
-"colorscheme terminal
+colorscheme terminal
 "colorscheme solarized
 "colorscheme molokai
-colorscheme onedark 
+"colorscheme onedark 
 "colorscheme one
 ""set mouse=n
 set shortmess=atI
@@ -128,6 +130,21 @@ nmap wm :NERDTreeToggle<CR>
 
 "MiniBufExplorer
 let g:miniBufExplorerAutoStart = 0
+
+"airline
+" 开启tabline
+let g:airline#extensions#tabline#enabled = 1
+" tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_sep = ''
+" tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" tabline中buffer显示编号
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='onedark'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+if !exists('g:airline_symbols')
+    let g:airline_symbols={}
+endif
 
 "Terminal
 
