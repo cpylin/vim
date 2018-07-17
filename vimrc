@@ -29,7 +29,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-"deoplete自动补齐插件,似乎不如YCM好用
+"deoplete自动补齐插件
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
