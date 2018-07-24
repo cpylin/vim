@@ -102,7 +102,7 @@ set maxmemtot=2048000
 set suffixes=.bak,~,.o,.info,.swp,.obj
 "set suffixesadd
 set laststatus=2
-set undolevels=500
+set undolevels=1000
 set showcmd
 set showmatch
 set showmode
@@ -115,8 +115,8 @@ set winminheight=2
 set winwidth=25
 set winminwidth=25
 set helpheight=15
-"set switchbuf=usetab,newtab
-"set showtabline=1
+set switchbuf=usetab,newtab
+set showtabline=1
 "set linespace=0
 "set guifont=Consolas:h16 
 

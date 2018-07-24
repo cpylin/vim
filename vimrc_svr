@@ -72,7 +72,7 @@ set maxmemtot=2048000
 set suffixes=.bak,~,.o,.info,.swp,.obj
 "set suffixesadd
 set laststatus=2
-set undolevels=500
+set undolevels=1000
 set showcmd
 set showmatch
 set showmode
