@@ -58,7 +58,7 @@ set t_Co=256
 if has("gui_running")
   colorscheme solarized
 else
-  colorscheme terminal
+  colorscheme onedark
 endif
 
 
@@ -129,7 +129,7 @@ set showtabline=1
 ")
 "并设置let g:airline_powerline_fonts = 1
 "其他powerline字体:https://github.com/powerline/fonts
-set guifont=DejaVu_Sans_Mono_for_Powerline:h15,Consolas_NF:h15
+set guifont=DejaVu_Sans_Mono_for_Powerline:h14,Consolas_NF:h14
 set guifontwide=YaHei_Consolas_Hybrid:h14
 
 "set guioptions-=T
@@ -253,7 +253,7 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
 
-if has("gui_running")
+if 1 
 	let g:airline_powerline_fonts = 1 "需要先安装Powerline字体否则禁用此配置项   
 	" powerline symbols
 	let g:airline_left_sep = ''
@@ -318,3 +318,15 @@ let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"
 let g:UltiSnipsListSnippets="<c-e>"
+
+
+
+"python
+if has("pythonx")
+	set pyxversion=3
+endif
+if has("python3")
+	set pyxversion=3
+endif
+
+
