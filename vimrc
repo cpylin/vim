@@ -32,6 +32,7 @@ Plug 'honza/vim-snippets'
 "deoplete自动补齐插件
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-go', { 'do': 'make'}
 else
   "deoplete core
   Plug 'Shougo/deoplete.nvim'
