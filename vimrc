@@ -75,6 +75,9 @@ set ttym=xterm
 set scroll=10
 set sidescroll=1
 set tabstop=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 set confirm
 set clipboard+=unnamed  "share clipboard with system
 ""set tagbsearch
