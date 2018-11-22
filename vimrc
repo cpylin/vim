@@ -133,8 +133,8 @@ set showtabline=1
 ")
 "并设置let g:airline_powerline_fonts = 1
 "其他powerline字体:https://github.com/powerline/fonts
-set guifont=DejaVu_Sans_Mono_for_Powerline:h14,Consolas_NF:h14
-set guifontwide=YaHei_Consolas_Hybrid:h14
+set guifont=DejaVu_Sans_Mono_for_Powerline:h16,Consolas_NF:h16
+set guifontwide=YaHei_Consolas_Hybrid:h15
 
 "set guioptions-=T
 "set completeopt=longest,menu
