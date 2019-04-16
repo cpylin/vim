@@ -91,7 +91,7 @@ syntax on
 set ruler
 set autowrite
 set more
-set wb
+set writebackup
 set backup
 set backupskip=/tmp/*
 set backupcopy=yes
@@ -139,7 +139,7 @@ set number
 set numberwidth=5
 set noreadonly
 set nolisp
-set aw
+set autowrite
 set nocursorline
 set nocursorcolumn
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
