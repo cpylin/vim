@@ -126,15 +126,12 @@ set showtabline=1
 
 "设置GUI环境下的字体:
 "注意:由于使用了airline状态栏插件,要使状态栏完美展示需要使用打了powerline补丁的字体,
-"目前使用DejaVu_Sans_Mono和Consolas
-"(
-"https://github.com/Znuff/consolas-powerline.git
-"https://github.com/powerline/fonts/tree/master/DejaVuSansMono
-")
-"并设置let g:airline_powerline_fonts = 1
-"其他powerline字体:https://github.com/powerline/fonts
-set guifont=DejaVu_Sans_Mono_for_Powerline:h16,Consolas_NF:h16
-set guifontwide=YaHei_Consolas_Hybrid:h15
+"相关字体下载: https://github.com/so86/devfont
+"更多powerline字体:https://github.com/powerline/fontss
+"安装相关字体后设置let g:airline_powerline_fonts = 1
+
+set guifont=Menlo\ for\ Powerline:h16,DejaVu\ Sans\ Mono\ for\ Powerline:h16,Consolas\ NF:h16
+set guifontwide=YaHei\ Consolas\ Hybrid:h15
 
 "set guioptions-=T
 "set completeopt=longest,menu
