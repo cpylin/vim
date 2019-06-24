@@ -10,11 +10,8 @@ Plug 'fatih/vim-go'
 Plug 'junegunn/vim-easy-align'
 "Plug 'Valloric/YouCompleteMe'  "改用deoplete
 Plug 'scrooloose/nerdtree'
-Plug 'dracula/vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'rakr/vim-one'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'sainnhe/vim-color-forest-night'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/taglist.vim'
@@ -57,9 +54,11 @@ set t_Co=256
 "colorscheme onedark 
 "colorscheme one
 if has("gui_running")
-  colorscheme solarized
+  colorscheme solarized8
 else
-  colorscheme onedark
+  "colorscheme onedark
+  "colorscheme forest-night
+  colorscheme dracula
 endif
 
 
