@@ -60,7 +60,9 @@ else
   "colorscheme forest-night
   colorscheme dracula
 endif
-
+if has("autocmd")                                                          
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif                                                        
+endif
 
 ""set mouse=n
 set shortmess=atI
@@ -156,6 +158,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_version_warning = 0
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -311,7 +314,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 "Terminal
-set termwinsize="12x50"
+"set termwinsize="12x50"
 
 "set UltiSnips
 let g:UltiSnipsExpandTrigger="<leader><tab>"
