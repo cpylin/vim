@@ -72,7 +72,12 @@ set fileformats=unix,mac,dos
 set fileencoding=utf-8
 set fileencodings=utf-8,gbk,cp936,default
 set termencoding=utf-8
-set ttym=xterm
+if ! has('nvim')
+    set ttym=xterm
+    set swapsync=fsync
+    set maxmem=1024000
+    set maxmemtot=2048000
+endif
 set scroll=10
 set sidescroll=1
 set tabstop=4
@@ -99,11 +104,8 @@ set backupcopy=yes
 set backupdir=~/tmp/vimbak "设置自动备份的目录,如果指定目录不存在需要先创建
 set directory=.
 set swapfile
-set swapsync=fsync
 set updatecount=200
 set updatetime=5000
-set maxmem=1024000
-set maxmemtot=2048000
 set suffixes=.bak,~,.o,.info,.swp,.obj
 "set suffixesadd
 set laststatus=2
@@ -326,10 +328,14 @@ let g:UltiSnipsListSnippets="<c-e>"
 
 "python
 if has("pythonx")
-	set pyxversion=3
+	if ! has('nvim')
+        set pyxversion=3
+    endif
 endif
 if has("python3")
-	set pyxversion=3
+    if ! has('nvim')
+    	set pyxversion=3
+    endif
 endif
 
 
