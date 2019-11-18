@@ -29,14 +29,14 @@ Plug 'honza/vim-snippets'
 "deoplete自动补齐插件
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make'}
+  Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 else
   "deoplete core
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
   "for Go
-  Plug 'zchee/deoplete-go', { 'do': 'make'}
+  Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 endif
 
 
@@ -313,6 +313,9 @@ endif
 "Deoplet
 set completeopt=menuone,menu,longest
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#source_importer = 1
+let g:deoplete#sources#go#builtin_objects = 1
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 "Terminal
