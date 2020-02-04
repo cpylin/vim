@@ -132,9 +132,25 @@ set showtabline=1
 "相关字体下载: https://github.com/so86/devfont
 "更多powerline字体:https://github.com/powerline/fontss
 "安装相关字体后设置let g:airline_powerline_fonts = 1
+if has("gui_running")
+  if has("mac")
+    "用于MacOS
+    set guifont=Menlo\ for\ Powerline:h16,DejaVu\ Sans\ Mono\ for\ Powerline:h16,Consolas\ NF:h16
+    set guifontwide=YaHei\ Consolas\ Hybrid:h15
+  elseif has("linux")
+    "用于Linux
+    set guifont=Menlo\ for\ Powerline\ 12,DejaVu\ Sans\ Mono\ for\ Powerline\ 12,Consolas\ NF\ 12
+    set guifontwide=YaHei\ Consolas\ Hybrid\ 11
+  elseif has('win32')
 
-set guifont=Menlo\ for\ Powerline:h16,DejaVu\ Sans\ Mono\ for\ Powerline:h16,Consolas\ NF:h16
-set guifontwide=YaHei\ Consolas\ Hybrid:h15
+  else
+
+  endif
+else
+  
+endif
+
+
 
 "set guioptions-=T
 "set completeopt=longest,menu
@@ -146,11 +162,6 @@ set autowrite
 set nocursorline
 set nocursorcolumn
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-if has("gui_running")
-	
-else
-
-endif
 
 
 "vim-go
@@ -203,7 +214,13 @@ nmap wm :NERDTreeToggle<CR>
 
 
 "ctags
-let Tlist_Ctags_Cmd = '/opt/local/bin/ctags'
+let ctagspath='ctags'
+if has('mac')
+  let ctagspath='/opt/local/bin/ctags'
+elseif has('linux')
+  let ctagspath='/usr/bin/ctags'
+endif
+let Tlist_Ctags_Cmd = ctagspath
 set tags=tags;
 "taglist
 "不同时显示多个文件的 tag ，只显示当前文件的
@@ -216,7 +233,7 @@ let Tlist_Auto_Open = 0
 let Tlist_File_Fold_Auto_Close = 1
 
 "tagbar
-let g:tagbar_ctags_bin = '/opt/local/bin/ctags'
+let g:tagbar_ctags_bin = ctagspath
 let g:tagbar_left = 0
 let g:tagbar_width = 25
 let g:tagbar_autofocus = 0
