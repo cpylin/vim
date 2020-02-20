@@ -101,11 +101,11 @@ set writebackup
 set backup
 set backupskip=/tmp/*
 set backupcopy=yes
-set backupdir=~/tmp/vimbak "设置自动备份的目录,如果指定目录不存在需要先创建
-set directory=.
-set swapfile
+set backupdir=~/.vimcache "设置自动备份的目录,如果指定目录不存在需要先创建
+set swapfile "启用交换区文件
+set directory=~/.vimcache "设置交换区文件保存目录
 set updatecount=200
-set updatetime=5000
+set updatetime=30000
 set suffixes=.bak,~,.o,.info,.swp,.obj
 "set suffixesadd
 set laststatus=2
