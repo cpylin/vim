@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plug')
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/L9'
 Plug 'rstacruz/sparkup', {'runtimepath': 'vim/'}
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'junegunn/vim-easy-align'
 "Plug 'Valloric/YouCompleteMe'  "改用deoplete
 Plug 'scrooloose/nerdtree'
@@ -31,12 +31,14 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 else
-  "deoplete core
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  "for Go
-  Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+  if has("mac")
+    "deoplete core
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    "for Go
+    Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+  endif
 endif
 
 

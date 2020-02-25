@@ -1,1 +1,1 @@
-/Users/cpylin/.vim/vimrc
+/home/so86/.vim/vimrc
