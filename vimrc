@@ -27,18 +27,18 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "deoplete自动补齐插件
+"依赖python,建议使用python3, 并安装或升级msgpack 1.0.0+, pynvim
+"pip3 install --upgrade msgpack pynvim
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 else
-  if has("mac")
     "deoplete core
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     "for Go
     Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-  endif
 endif
 
 
@@ -132,18 +132,18 @@ set showtabline=1
 "设置GUI环境下的字体:
 "注意:由于使用了airline状态栏插件,要使状态栏完美展示需要使用打了powerline补丁的字体,
 "相关字体下载: 
-"  https://github.com/so86/devfont
-"  https://github.com/so86/font-menlo-extra
+"https://github.com/so86/devfont
+"https://github.com/so86/font-menlo-extra
 "更多powerline字体:https://github.com/powerline/fontss
 "安装相关字体后设置let g:airline_powerline_fonts = 1
 if has("gui_running")
   if has("mac")
     "用于MacOS
-    set guifont=Menlo\ for\ Powerline:h16,DejaVu\ Sans\ Mono\ for\ Powerline:h16,Consolas\ NF:h16
+    set guifont=Menlo\ Nerd\ Font\ Mono:h16,DejaVu\ Sans\ Mono\ for\ Powerline:h16,Consolas\ NF:h16
     set guifontwide=YaHei\ Consolas\ Hybrid:h15
   elseif has("linux")
     "用于Linux
-    set guifont=Menlo\ for\ Powerline\ 12,DejaVu\ Sans\ Mono\ for\ Powerline\ 12,Consolas\ NF\ 12
+    set guifont=Menlo\ Nerd\ Font\ Mono\ 12,DejaVu\ Sans\ Mono\ for\ Powerline\ 12,Consolas\ NF\ 12
     set guifontwide=YaHei\ Consolas\ Hybrid\ 11
   elseif has('win32')
 
