@@ -131,7 +131,9 @@ set showtabline=1
 
 "设置GUI环境下的字体:
 "注意:由于使用了airline状态栏插件,要使状态栏完美展示需要使用打了powerline补丁的字体,
-"相关字体下载: https://github.com/so86/devfont
+"相关字体下载: 
+"  https://github.com/so86/devfont
+"  https://github.com/so86/font-menlo-extra
 "更多powerline字体:https://github.com/powerline/fontss
 "安装相关字体后设置let g:airline_powerline_fonts = 1
 if has("gui_running")
