@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plug')
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/L9'
 Plug 'rstacruz/sparkup', {'runtimepath': 'vim/'}
-"Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'junegunn/vim-easy-align'
 "Plug 'Valloric/YouCompleteMe'  "改用deoplete
 Plug 'scrooloose/nerdtree'
